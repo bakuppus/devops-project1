@@ -1,8 +1,8 @@
 pipeline {
     agent any
       tools {
-             jdk "JDK8"
-             maven  "maven3.5.4"
+             jdk "jdk9"
+             maven  "maven3.6"
        }
     stages {
         stage('Maven Build') {
@@ -26,13 +26,13 @@ pipeline {
                 def buildInfo
                 server.bypassProxy = true
                 rtMaven.tool = "maven3"
-                rtMaven.deployer releaseRepo:'maven-local', snapshotRepo:'maven-snapshot-local', server: server
+                rtMaven.deployer releaseRepo:'maven-local', snapshotRepo:'maven-snapshot', server: Jfrog
 
             def uploadSpec = """{
                "files": [
                   {
                     "pattern": "target/*.war",
-                    "target": "maven-snapshot-local/"
+                    "target": "maven-snapshot/"
                    }
                   ]
                 }"""
