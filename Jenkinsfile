@@ -26,7 +26,7 @@ pipeline {
                 def buildInfo
                 server.bypassProxy = true
                 rtMaven.tool = "maven3"
-                rtMaven.deployer releaseRepo:'maven-local', snapshotRepo:'maven-snapshot', server: Jfrog
+                rtMaven.deployer releaseRepo:'maven-local', snapshotRepo:'maven-snapshot', server: server
 
             def uploadSpec = """{
                "files": [
