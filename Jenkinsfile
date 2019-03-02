@@ -21,7 +21,7 @@ pipeline {
         stage('Artifactory configuration') {
            steps {
              script {
-                def server = Artifactory.server 'server'
+                def server = Artifactory.server 'Jfrog'
                 def rtMaven = Artifactory.newMavenBuild()
                 def buildInfo
                 server.bypassProxy = true
