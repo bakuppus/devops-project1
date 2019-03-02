@@ -1,2 +1,2 @@
 # devops-project1
-git + Maven + Sonar + Junit + Jfrog + Rancher + Kubernetes + Docker 
+git + Maven + Sonar + Junit + Jfrog + Rancher + Kubernetes  
