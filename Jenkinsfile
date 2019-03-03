@@ -96,6 +96,7 @@ pipeline {
        ////////// Step 1 //////////
        stage('K8s and helm  checkup') {
            steps {
+              script {
 
               def SERVICE_NAME
                //userid
@@ -114,9 +115,10 @@ pipeline {
               sh "helm install devapp --name devserver"
 
               //Get Service IP
-              SERVICE_NAME="kubectl get svc -o yaml | grep hostname | cut -d ':' -f2"
+              sh "SERVICE_NAME=$(kubectl get svc -o yaml | grep hostname | cut -d ':' -f2)"
               sh "sleep 15"
               sh "echo $SERVICE_NAME"
+             }
            }
          }
 
