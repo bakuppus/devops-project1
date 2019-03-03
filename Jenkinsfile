@@ -110,13 +110,13 @@ pipeline {
 
                //Install dev
                sh "helm delete --purge devserver"
-               sh "sleep 30"
+               sh "sleep 5"
 
               //Install dev
               sh "helm install devapp --name devserver"
 
               //Get Service IP
-              sh "sleep 30"
+              sh "sleep 5"
               sh "sh networkinfo.sh"
 
               sh "echo $NODE_IP"
