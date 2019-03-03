@@ -117,7 +117,7 @@ pipeline {
 
               //Get Service IP
               sh "sleep 30"
-              sh "SERVICE_NAME=\$(kubectl get svc -o yaml | grep hostname | cut -d ':' -f2)"
+              sh "NODE_IP=\$(kubectl describe svc dev-service | grep  addresses | cut -d'"' -f4)"
 
               sh "echo $SERVICE_NAME"
              }
@@ -128,7 +128,7 @@ pipeline {
          stage('Deploy to tomcat8') {
              steps {
                 script {
-                sh "curl -v -u admin:admin -T target/javaee7-simple-sample.war 'http://\$SERVICE_NAME:8080/manager/text/deploy?path=/dev&update=true'"
+                sh "curl -v -u admin:admin -T target/javaee7-simple-sample.war 'http://\$NODE_IP:8080/manager/text/deploy?path=/dev&update=true'"
          }
         }
        }
