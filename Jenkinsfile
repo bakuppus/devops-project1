@@ -119,7 +119,7 @@ pipeline {
               sh "sleep 5"
               sh "sh networkinfo.sh"
 
-              sh "echo $NODE_IP"
+
              }
            }
          }
