@@ -59,7 +59,7 @@ pipeline {
         node {
 
           // Cleanup workspace
-          deleteDir()
+          //deleteDir()
 
           //copy war
           //sh "cp -rf target/*.war ."
