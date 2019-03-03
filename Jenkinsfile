@@ -118,7 +118,7 @@ pipeline {
                  //userid
                  sh "id"
                  // Tomcat library to deploy / undeploy to tomcat
-               tomcat = new com.cb.web.Tomcat(hostname: "a9ae6f7323dd611e9bf47029148a1502-263082547.us-east-2.elb.amazonaws.com", port: "8080", adminUser: "admin", adminPassword: "admin")
+               tomcat = (hostname: "a9ae6f7323dd611e9bf47029148a1502-263082547.us-east-2.elb.amazonaws.com", port: "8080", adminUser: "admin", adminPassword: "admin")
 
                // Local variables
                artifactName = 'javaee7-simple-sample.war'
