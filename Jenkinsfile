@@ -42,7 +42,7 @@ pipeline {
             def uploadSpec = """{
                "files": [
                   {
-                    "pattern": "",
+                    "pattern": "*",
                     "target": "maven-snapshot/"
                    }
                   ]
