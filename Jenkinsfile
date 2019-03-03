@@ -66,7 +66,7 @@ pipeline {
           def tagDockerApp
 
           //Clone example project from GitHub repository
-          git url: 'https://github.com/bakuppus/jenkinsfile-docker.git', branch: 'master'
+          //git url: 'https://github.com/bakuppus/jenkinsfile-docker.git', branch: 'master'
 
           // Step 1: Obtain an Artifactiry instance, configured in Manage Jenkins --> Configure System:
           def server = Artifactory.server 'Jfrog'
