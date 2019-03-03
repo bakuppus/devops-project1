@@ -46,8 +46,8 @@ pipeline {
                     "target": "maven-snapshot/"
                    }
                   ]
-                }""" */
-                server.upload(uploadSpec)
+                }"""
+                server.upload(uploadSpec) */
     }
   }
  }
