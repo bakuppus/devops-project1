@@ -39,14 +39,14 @@ pipeline {
                 rtMaven.tool = "maven3"
                 rtMaven.deployer releaseRepo:'maven-local', snapshotRepo:'maven-snapshot', server: server
 
-            def uploadSpec = """{
+            /*def uploadSpec = """{
                "files": [
                   {
                     "pattern": "target/*.war",
                     "target": "maven-snapshot/"
                    }
                   ]
-                }"""
+                }""" */
                 server.upload(uploadSpec)
     }
   }
