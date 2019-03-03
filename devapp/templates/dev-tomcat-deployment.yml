@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dev-server
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dev-server
+    spec:
+      containers:
+      - name: dev-server
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - name: http-port
+          containerPort: 8080
