@@ -110,13 +110,15 @@ pipeline {
 
                //Install dev
                sh "helm delete --purge devserver"
+               sh "sleep 30"
 
               //Install dev
               sh "helm install devapp --name devserver"
 
               //Get Service IP
+              sh "sleep 120"
               sh "SERVICE_NAME=\$(kubectl get svc -o yaml | grep hostname | cut -d ':' -f2)"
-              sh "sleep 15"
+
               sh "echo $SERVICE_NAME"
              }
            }
