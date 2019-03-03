@@ -59,7 +59,7 @@ pipeline {
         node {
 
           // Cleanup workspace
-          deleteDir()
+          //deleteDir()
 
 
           def buildInfo = Artifactory.newBuildInfo()
