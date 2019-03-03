@@ -61,8 +61,6 @@ pipeline {
           // Cleanup workspace
           deleteDir()
 
-          //copy war
-          //sh "cp -rf target/*.war ."
 
           def buildInfo = Artifactory.newBuildInfo()
           def tagDockerApp
@@ -111,6 +109,31 @@ pipeline {
               sh "helm install devapp --name devserver"
            }
          }
+
+         ////////// Step 2 //////////
+         stage('Deploy to tomcat8') {
+             steps {
+                 //userid
+                 sh "id"
+                 // Tomcat library to deploy / undeploy to tomcat
+               tomcat = new com.cb.web.Tomcat(hostname: "a9ae6f7323dd611e9bf47029148a1502-263082547.us-east-2.elb.amazonaws.com", port: "8080", adminUser: "admin", adminPassword: "admin")
+
+               // Local variables
+               artifactName = 'javaee7-simple-sample.war'
+               artifact = "target/${artifactName}"
+
+               // Closures to be executed by tomcat library to deploy/undeploy
+               deployClosure = {war, url, id -> sh "curl --upload-file ${war} '${url}?path=/${id}&update=true'"}
+
+
+                   // Make sure only one build can enter this stage
+                   stage name: 'Staging', concurrency: 1
+
+                   // Deploy the artifact to Tomcat
+                   tomcat.deploy(artifact, 'staging', deployClosure)
+
+             }
+           }
 
 
 
