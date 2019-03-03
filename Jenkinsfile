@@ -106,8 +106,15 @@ pipeline {
                // Init helm client
                sh "helm init"
 
+               //Install dev
+               sh "helm delete --purge devserver"
+
               //Install dev
               sh "helm install devapp --name devserver"
+
+              //Get Service IP
+              sh "SERVICE_NAME=$(kubectl get svc -o yaml | grep hostname | cut -d ':' -f2)"
+              sh "echo $SERVICE_NAME"
            }
          }
 
@@ -115,7 +122,7 @@ pipeline {
          stage('Deploy to tomcat8') {
              steps {
                 script {
-                sh "curl -v -u admin:admin -T target/javaee7-simple-sample.war 'http://a9ae6f7323dd611e9bf47029148a1502-263082547.us-east-2.elb.amazonaws.com:8080/manager/text/deploy?path=/dev&update=true'"
+                sh "curl -v -u admin:admin -T target/javaee7-simple-sample.war 'http://$SERVICE_NAME:8080/manager/text/deploy?path=/dev&update=true'"
          }
         }
        }
