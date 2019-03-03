@@ -117,9 +117,9 @@ pipeline {
 
               //Get Service IP
               sh "sleep 30"
-              sh "NODE_IP='\$(kubectl describe svc dev-service | grep  addresses | cut -d '"' -f4)'"
+              sh "sh networkinfo.sh"
 
-              sh "echo $SERVICE_NAME"
+              sh "echo $NODE_IP"
              }
            }
          }
