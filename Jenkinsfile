@@ -117,7 +117,8 @@ pipeline {
                 script {
                 sh "curl -v -u admin:admin -T target/javaee7-simple-sample.war 'http://a9ae6f7323dd611e9bf47029148a1502-263082547.us-east-2.elb.amazonaws.com:8080/manager/text/deploy?path=/dev&update=true'"
          }
-
+        }
+       }
 
     }
 }
