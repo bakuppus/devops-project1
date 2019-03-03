@@ -9,5 +9,6 @@ spec:
       name: "http"
       nodePort: 30000
       targetPort: 8080
+      protocol: TCP
   selector:
     app: dev-server
