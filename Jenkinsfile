@@ -115,7 +115,7 @@ pipeline {
               sh "helm install devapp --name devserver"
 
               //Get Service IP
-              sh "SERVICE_NAME="${kubectl get svc -o yaml | grep hostname | cut -d ':' -f2}""
+              sh "SERVICE_NAME=\$(kubectl get svc -o yaml | grep hostname | cut -d ':' -f2)"
               sh "sleep 15"
               sh "echo $SERVICE_NAME"
              }
