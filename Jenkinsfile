@@ -128,7 +128,7 @@ pipeline {
          stage('Deploy to tomcat8') {
              steps {
                 script {
-                sh "curl -v -u admin:admin -T target/javaee7-simple-sample.war 'http://\$NODE_IP:8080/manager/text/deploy?path=/dev&update=true'"
+                sh "sh deploy-to-dev.sh"
          }
         }
        }
