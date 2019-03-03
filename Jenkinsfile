@@ -96,6 +96,7 @@ pipeline {
        ////////// Step 1 //////////
        stage('K8s and helm  checkup') {
            steps {
+
                //userid
                sh "id"
 
@@ -113,6 +114,7 @@ pipeline {
          ////////// Step 2 //////////
          stage('Deploy to tomcat8') {
              steps {
+                script {
                  //userid
                  sh "id"
                  // Tomcat library to deploy / undeploy to tomcat
@@ -134,7 +136,7 @@ pipeline {
 
              }
            }
-
+         }
 
 
     }
