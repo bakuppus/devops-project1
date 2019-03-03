@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: dev-service
 spec:
-  type: LoadBalancer
+  type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
       name: "http"
