@@ -87,10 +87,10 @@ pipeline {
 
           // Step 4: Publish the build-info to Artifactory:
           server.publishBuildInfo buildInfo
+          }
+        }
+       }
       }
-  }
- }
- }
 
 
        ////////// Step 1 //////////
@@ -119,6 +119,7 @@ pipeline {
          }
         }
        }
+
 
     }
 }
