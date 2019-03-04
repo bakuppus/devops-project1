@@ -134,7 +134,9 @@ pipeline {
          }
 
          ////////// Step 2 //////////
-
+         stage('slack') {
+             steps {
+                script {
            node {
            def notifyBuild = { String buildStatus ->
                // build status of null means successful
@@ -185,8 +187,10 @@ pipeline {
                    notifyBuild(currentBuild.result)
                }
            }
+         }
        }
-
+      }
+    }
 
 
 
