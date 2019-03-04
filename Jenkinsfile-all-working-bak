@@ -172,11 +172,11 @@ pipeline {
                try {
                    notifyBuild('STARTED')
 
-                   steps {
+
                       script {
                       sh "sh deploy-to-dev.sh"
                     }
-                  }
+
 
                } catch (e) {
                    // If there was an exception thrown, the build failed
