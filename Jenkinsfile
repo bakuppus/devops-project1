@@ -134,6 +134,7 @@ pipeline {
          }
 
          ////////// Step 2 //////////
+      node {
          stage('Deploy to tomcat8') {
              steps {
                 script {
@@ -142,9 +143,6 @@ pipeline {
         }
        }
      //////// Slack Notification /////////
-      node {
-        script {
-        //#!/usr/bin/env groovy
 
                 /**
                  * Send notifications based on build status string
@@ -185,10 +183,7 @@ pipeline {
                       recipientProviders: [[$class: 'DevelopersRecipientProvider']]
                     )
                 }
-
-        }
-
-      }
+             }
 
 
     }
