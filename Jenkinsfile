@@ -5,7 +5,7 @@ pipeline {
              maven  "maven3.6"
        }
     stages {
-        stage('Maven Build') {
+        stage('Build') {
             steps {
                 sh 'mvn clean install'
             }
@@ -22,7 +22,7 @@ pipeline {
             }
         }
 
-        stage("build & SonarQube analysis") {
+        stage("SonarQube Analysis") {
            steps {
                sh 'mvn clean package sonar:sonar'
                }
@@ -31,14 +31,14 @@ pipeline {
 
 
 
-        stage('Maven Package') {
+        stage('Package') {
             steps {
                 sh 'mvn package'
             }
         }
 
 
-        stage('Artifactory configuration') {
+        stage('Release') {
            steps {
              script {
                 def server = Artifactory.server 'Jfrog'
@@ -61,7 +61,7 @@ pipeline {
         }
        }
 
-        stage('Artifactory') {
+        stage('Docker Build') {
           steps {
 
           script {
@@ -103,7 +103,7 @@ pipeline {
 
 
        ////////// Step 1 //////////
-       stage('K8s and helm  checkup') {
+       stage('Helm Deploy') {
            steps {
               script {
 
@@ -134,7 +134,7 @@ pipeline {
          }
 
          ////////// Step 2 //////////
-         stage('slack') {
+         stage('Deploy To Dev') {
              steps {
                 script {
            node {
@@ -168,11 +168,11 @@ pipeline {
 
 
 
-           stage ('Deploy to tomcat8') {
+
                try {
                    notifyBuild('STARTED')
 
-                   
+
                       script {
                       sh "sh deploy-to-dev.sh"
                     }
@@ -186,7 +186,7 @@ pipeline {
                    // Success or failure, always send notifications
                    notifyBuild(currentBuild.result)
                }
-           }
+
          }
        }
       }
