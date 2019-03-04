@@ -23,12 +23,11 @@ pipeline {
         }
 
         stage("build & SonarQube analysis") {
-           node {
-               withSonarQubeEnv('My SonarQube Server') {
-                  sh 'mvn clean package sonar:sonar'
+           steps {
+               sh 'mvn clean package sonar:sonar'
                }
            }
-       }
+
 
        stage("Quality Gate"){
            timeout(time: 1, unit: 'HOURS') {
