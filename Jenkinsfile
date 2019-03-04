@@ -57,15 +57,15 @@ pipeline {
                   ]
                 }"""
                 server.upload(uploadSpec)
-    }
-  }
- }
+          }
+        }
+       }
 
- stage('Artifactory') {
-  steps {
+        stage('Artifactory') {
+          steps {
 
-      script {
-        node {
+          script {
+            node {
 
           // Cleanup workspace
           //deleteDir()
