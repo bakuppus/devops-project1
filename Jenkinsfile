@@ -135,6 +135,7 @@ pipeline {
 
          ////////// Step 2 //////////
       node {
+         try {
          stage('Deploy to tomcat8') {
              steps {
                 script {
@@ -184,6 +185,7 @@ pipeline {
                     )
                 }
              }
+            }
 
 
     }
