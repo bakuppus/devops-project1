@@ -144,7 +144,7 @@ pipeline {
      //////// Slack Notification /////////
       node {
         script {
-        #!/usr/bin/env groovy
+        //#!/usr/bin/env groovy
 
                 /**
                  * Send notifications based on build status string
